@@ -1,0 +1,62 @@
+import telebot;
+
+bot = telebot.TeleBot('%токен их бота%');
+
+@bot.message_handler(content_types=['text'])
+@bot.callback_query_handler(func=lambda call: True)
+
+bot.polling(none_stop=True, interval=0)
+
+int dostoprimet1;
+int dostoprimet2;
+int dostoprimet3;
+ 
+
+def bot_mesege (message):
+
+	if message.text == "Привет" or "/help" :
+
+    		bot.send_message(message.from_user.id, "Привет, вот чем я могу тебе помочь.");
+
+		keyboard = types.InlineKeyboardMarkup(); 
+
+     		key_dos1 = types.InlineKeyboardButton(text='Достопремечательность 1', callback_data='dos1'); 
+      		keyboard.add(key_dos1);
+
+      		key_dos2= types.InlineKeyboardButton(text='Достопремечательность 2', callback_data='dos2');
+      		keyboard.add(key_dos2);
+
+		key_dos3= types.InlineKeyboardButton(text='Достопремечательность 3', callback_data='dos3');
+      		keyboard.add(key_dos3);
+
+      		question = 'Что бы ты хотел посмотреть'?';
+      		bot.send_message(message.from_user.id, text=question, reply_markup=keyboard);
+
+	if message.text == "/static" :
+
+    		bot.send_message(message.from_user.id, "достопримечательность 1 просмотрели" + dostoprimet1 + "раз(a) /n" + достопримечательность 2 просмотрели" + dostoprimet2 + "раз(a) /n" достопримечательность 3 просмотрели" + dostoprimet3 + "раз(a) ");
+	else:
+    		bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help");
+	
+
+
+def callback_worker(call):
+    	if call.data == "dos1": 
+  		bot.send_message(call.message.chat.id, ' информация о достопремечательности 1');
+		dostoprimet1++;
+		question = 'Что бы ты ещё хотел посмотреть'?';
+      		bot.send_message(message.from_user.id, text=question, reply_markup=keyboard);
+
+
+	if call.data == "dos2": 
+  		bot.send_message(call.message.chat.id, ' информация о достопремечательности 2');
+		dostoprimet2++;
+		question = 'Что бы ты ещё хотел посмотреть'?';
+      		bot.send_message(message.from_user.id, text=question, reply_markup=keyboard);
+
+   	 elif call.data == "dos3":
+		bot.send_message(call.message.chat.id, ' информация о достопремечательности 3');
+		dostoprimet3++;
+		question = 'Что бы ты ещё хотел посмотреть'?';
+      		bot.send_message(message.from_user.id, text=question, reply_markup=keyboard);
+	
